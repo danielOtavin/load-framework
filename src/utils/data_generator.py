@@ -16,4 +16,3 @@ def generate_user_dict() -> Dict:
 from src.utils.data_generator import generate_user_dict
 
 user_data = generate_user_dict()
-print(user_data)

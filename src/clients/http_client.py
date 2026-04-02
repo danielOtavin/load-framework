@@ -7,7 +7,14 @@ from src.models import User
 
 
 class HttpClient:
-    def __init__(self, base_url: str, timeout: int = 30, log: bool = False):
+    def __init__(self, base_url: str = None, timeout: int = 30, log: bool = False):
+        if base_url is None:
+            from config import settings
+            base_url = settings.http_base_url
+        if log is None:
+            from config import settings
+            log = settings.log_enabled
+
         self.base_url = base_url.rstrip('/')
         self.client = httpx.Client(timeout=timeout)
         self.log = log
@@ -107,3 +114,9 @@ class HttpClient:
 
     def __exit__(self, *args):
         self.close()
+
+from src.clients.http_client import HttpClient
+
+with HttpClient() as client:
+    resp = client.get("/get")
+    print(resp.status_code)

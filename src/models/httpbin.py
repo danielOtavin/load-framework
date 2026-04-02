@@ -2,6 +2,9 @@ from pydantic import BaseModel
 from typing import Dict, Any, Optional
 from clients import HttpClient
 
+class PostResponse(BaseModel):
+    json: Dict[str, Any]
+    url: str
 
 class HttpBinGetResponse(BaseModel):
     args: Dict[str, Any]
