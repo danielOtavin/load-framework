@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  http-mock:
+    build:
+      context: .
+      dockerfile: Dockerfile.mock
+    ports:
+      - "8001:8001"
+    command: python src/mocks/http_mock.py
+
+  grpc-mock:
+    build:
+      context: .
+      dockerfile: Dockerfile.mock
+    ports:
+      - "50051:50051"
+    command: python src/mocks/grpc_mock_server.py
